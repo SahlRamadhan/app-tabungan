@@ -41,7 +41,7 @@
                 </div> <!--end form-group-->
             </form><!--end form-->
             <div class="text-center">
-                <p class="text-muted">Already have an account ? <a href="auth-login.html" class="text-primary ms-2">Log
+                <p class="text-muted">Already have an account ? <a href="{{ route('login') }}" class="text-primary ms-2">Log
                         in</a></p>
             </div>
         </div><!--end card-body-->
