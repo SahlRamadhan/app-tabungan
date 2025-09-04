@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('tabungans', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('jenis_pembayaran_id');
+            $table->integer('jenispembayaran_id');
             $table->integer('nominal');
-            $table->enum('type', ['deposit', 'withdrawal']);
             $table->enum('status', ['pending', 'completed', 'failed'])->default('pending');
             $table->string('bukti_pembayaran')->nullable();
             $table->timestamps();

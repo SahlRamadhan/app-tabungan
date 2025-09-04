@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('amount');
-            $table->enum('type', ['deposit', 'withdraw']);
+            $table->integer('jenispembayaran_id');
             $table->enum('status', ['pending', 'in', 'out'])->default('pending');
             $table->timestamps();
         });

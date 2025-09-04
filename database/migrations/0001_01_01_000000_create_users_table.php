@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->integer('balance')->default(0);
+            $table->string('uuid')->unique();
             $table->string('alamat')->nullable();
-            $table->integer('no_hp')->nullable();
-            $table->integer('no_ktp')->nullable();
-            $table->integer('no_reke')->nullable();
+            $table->string('no_hp')->nullable();
+            $table->string('no_ktp')->nullable();
+            $table->string('no_rek')->nullable();
             $table->enum('role', ['admin', 'user'])->default('user');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamp('email_verified_at')->nullable();

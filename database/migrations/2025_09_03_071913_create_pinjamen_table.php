@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pinjamen', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('jenis_pembayaran_id');
+            $table->integer('jenispembayaran_id');
             $table->integer('nominal');
             $table->integer('tenor');
             $table->integer('no_rek');
