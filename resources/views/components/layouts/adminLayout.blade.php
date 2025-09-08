@@ -107,86 +107,43 @@
                             <span>Main</span>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">
+                        <li class="nav-item @if (Request::segment(2) == 'dashboard') active @endif">
+                            <a class="nav-link "
+                                href="{{ route('admin.dashboard') }}">
                                 <i class="iconoir-report-columns menu-icon"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li><!--end nav-item-->
-                        <li class="menu-label mt-2">
-                            <small class="label-border">
-                                <div class="border_left hidden-xs"></div>
-                                <div class="border_right"></div>
-                            </small>
-                            <span>Components</span>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#sidebarElements" data-bs-toggle="collapse" role="button"
                                 aria-expanded="false" aria-controls="sidebarElements">
                                 <i class="iconoir-compact-disc menu-icon"></i>
-                                <span>UI Elements</span>
+                                <span>Users</span>
                             </a>
                             <div class="collapse " id="sidebarElements">
                                 <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui-alerts.html">Alerts</a>
+                                    <li class="nav-item @if (Request::segment(2) == 'users') active @endif">
+                                        <a class="nav-link" href="{{ route('admin.users.index') }}">Users</a>
                                     </li><!--end nav-item-->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui-avatar.html">Avatar</a>
+                                    <li class="nav-item @if (Request::segment(2) == 'tambah') active @endif">
+                                        <a class="nav-link" href="{{ route('admin.users.tambah') }}">Tambah</a>
                                     </li><!--end nav-item-->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui-buttons.html">Buttons</a>
+                                </ul><!--end nav-->
+                            </div><!--end startbarElements-->
+                        </li><!--end nav-item-->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#sidebarTransaksi" data-bs-toggle="collapse" role="button"
+                                aria-expanded="false" aria-controls="sidebarTransaksi">
+                                <i class="iconoir-compact-disc menu-icon"></i>
+                                <span>Transaksi</span>
+                            </a>
+                            <div class="collapse " id="sidebarTransaksi">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item @if (Request::segment(2) == 'tabungan') active @endif ">
+                                        <a class="nav-link" href="{{ route('admin.transaksi.tabungan') }}">Tabungan</a>
                                     </li><!--end nav-item-->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui-badges.html">Badges</a>
-                                    </li><!--end nav-item-->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui-cards.html">Cards</a>
-                                    </li><!--end nav-item-->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui-carousels.html">Carousels</a>
-                                    </li><!--end nav-item-->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui-dropdowns.html">Dropdowns</a>
-                                    </li><!--end nav-item-->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui-grids.html">Grids</a>
-                                    </li><!--end nav-item-->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui-images.html">Images</a>
-                                    </li><!--end nav-item-->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui-list.html">List</a>
-                                    </li><!--end nav-item-->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui-modals.html">Modals</a>
-                                    </li><!--end nav-item-->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui-navs.html">Navs</a>
-                                    </li><!--end nav-item-->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui-navbar.html">Navbar</a>
-                                    </li><!--end nav-item-->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui-paginations.html">Paginations</a>
-                                    </li><!--end nav-item-->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui-popover-tooltips.html">Popover & Tooltips</a>
-                                    </li><!--end nav-item-->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui-progress.html">Progress</a>
-                                    </li><!--end nav-item-->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui-spinners.html">Spinners</a>
-                                    </li><!--end nav-item-->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui-tabs-accordions.html">Tabs & Accordions</a>
-                                    </li><!--end nav-item-->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui-typography.html">Typography</a>
-                                    </li><!--end nav-item-->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui-videos.html">Videos</a>
+                                    <li class="nav-item @if (Request::segment(2) == 'peminjaman') active @endif">
+                                        <a class="nav-link" href="{{ route('admin.transaksi.peminjaman') }}">Peminjaman</a>
                                     </li><!--end nav-item-->
                                 </ul><!--end nav-->
                             </div><!--end startbarElements-->
