@@ -14,7 +14,7 @@ class Index extends Component
     #[Layout('components.layouts.adminLayout')]
     public function render()
     {
-        $users = User::where('role', 'user')->get();
+        $users = User::where('role', 'user')->with('balances')->get();
         return view('livewire.admin.users.index', compact('users'));
     }
 

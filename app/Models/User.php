@@ -45,4 +45,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function balances()
+    {
+        return $this->hasMany(Balances::class, 'user_id', 'id');
+    }
 }

@@ -2,13 +2,14 @@
 
 namespace App\Livewire\Admin\Users;
 
+use App\Models\Balances;
 use App\Models\User;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 class Tambah extends Component
 {
-    public $name, $email, $password, $password_confirmation, $no_telp, $alamat, $no_ktp;
+    public $name, $email, $password, $password_confirmation, $no_telp, $alamat, $no_ktp, $amount;
 
     #[Layout('components.layouts.adminLayout')]
     public function render()
@@ -40,6 +41,12 @@ class Tambah extends Component
         $user->uuid = $uuid;
 
         $user->save();
+
+        $balances = new Balances();
+        $balances->user_id = $user->id;
+        $balances->amount = $this->amount ?? 0;
+        $balances->status = 'in';
+        $balances->save();
 
         return redirect()->to('/admin/users');
     }

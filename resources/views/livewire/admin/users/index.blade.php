@@ -95,6 +95,8 @@
                                         <th>No Telepon</th>
                                         <th>No NIK</th>
                                         <th>Alamat</th>
+                                        <th>Amount</th>
+                                        <th>Total</th>
                                         <th>Status</th>
                                         <th class="text-end">Action</th>
                                     </tr>
@@ -109,6 +111,8 @@
                                             <td>{{ $user->no_hp }}</td>
                                             <td>{{ $user->no_ktp }}</td>
                                             <td>{{ $user->alamat }}</td>
+                                            <td>{{ $user->balances->first()?->amount ?? 0 }}</td>
+                                            <td>{{ $user->balances->sum('amount') }}</td>
                                             <td>{{ $user->status }}</td>
                                             <td class="text-end">
                                                 <a wire:click="edit({{ $user->id }})"><i

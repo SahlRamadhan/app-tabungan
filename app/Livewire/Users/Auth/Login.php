@@ -26,14 +26,21 @@ class Login extends Component
             'password' => $this->password
         ];
 
+
         if (Auth::attempt($credentials)) {
             session()->regenerate();
             $user = Auth::user();
+            if ($user->status !== 'active') {
+                Auth::logout();
+                return redirect()->to('/login')->with('error', 'Akun Anda Tidak Aktif');
+            }
             if ($user->role === 'admin') {
                 return redirect()->intended('/admin/dashboard');
             } else {
                 return redirect()->intended('/dashboard');
             }
+        } else {
+            session()->flash('error', 'Email atau password salah!');
         }
     }
 }

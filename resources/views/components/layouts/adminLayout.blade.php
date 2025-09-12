@@ -107,47 +107,77 @@
                             <span>Main</span>
                         </li>
 
-                        <li class="nav-item @if (Request::segment(2) == 'dashboard') active @endif">
-                            <a class="nav-link "
-                                href="{{ route('admin.dashboard') }}">
-                                <i class="iconoir-report-columns menu-icon"></i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li><!--end nav-item-->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#sidebarElements" data-bs-toggle="collapse" role="button"
-                                aria-expanded="false" aria-controls="sidebarElements">
-                                <i class="iconoir-compact-disc menu-icon"></i>
-                                <span>Users</span>
-                            </a>
-                            <div class="collapse " id="sidebarElements">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item @if (Request::segment(2) == 'users') active @endif">
-                                        <a class="nav-link" href="{{ route('admin.users.index') }}">Users</a>
-                                    </li><!--end nav-item-->
-                                    <li class="nav-item @if (Request::segment(2) == 'tambah') active @endif">
-                                        <a class="nav-link" href="{{ route('admin.users.tambah') }}">Tambah</a>
-                                    </li><!--end nav-item-->
-                                </ul><!--end nav-->
-                            </div><!--end startbarElements-->
-                        </li><!--end nav-item-->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#sidebarTransaksi" data-bs-toggle="collapse" role="button"
-                                aria-expanded="false" aria-controls="sidebarTransaksi">
-                                <i class="iconoir-compact-disc menu-icon"></i>
-                                <span>Transaksi</span>
-                            </a>
-                            <div class="collapse " id="sidebarTransaksi">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item @if (Request::segment(2) == 'tabungan') active @endif ">
-                                        <a class="nav-link" href="{{ route('admin.transaksi.tabungan') }}">Tabungan</a>
-                                    </li><!--end nav-item-->
-                                    <li class="nav-item @if (Request::segment(2) == 'peminjaman') active @endif">
-                                        <a class="nav-link" href="{{ route('admin.transaksi.peminjaman') }}">Peminjaman</a>
-                                    </li><!--end nav-item-->
-                                </ul><!--end nav-->
-                            </div><!--end startbarElements-->
-                        </li><!--end nav-item-->
+                        @if (Auth::user()->role == 'admin')
+                            <li class="nav-item @if (Request::segment(2) == 'dashboard') active @endif">
+                                <a class="nav-link " href="{{ route('admin.dashboard') }}">
+                                    <i class="iconoir-report-columns menu-icon"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="#sidebarElements" data-bs-toggle="collapse" role="button"
+                                    aria-expanded="false" aria-controls="sidebarElements">
+                                    <i class="iconoir-compact-disc menu-icon"></i>
+                                    <span>Users</span>
+                                </a>
+                                <div class="collapse " id="sidebarElements">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item @if (Request::segment(2) == 'users') active @endif">
+                                            <a class="nav-link" href="{{ route('admin.users.index') }}">Users</a>
+                                        </li><!--end nav-item-->
+                                        <li class="nav-item @if (Request::segment(2) == 'tambah') active @endif">
+                                            <a class="nav-link" href="{{ route('admin.users.tambah') }}">Tambah</a>
+                                        </li><!--end nav-item-->
+                                    </ul><!--end nav-->
+                                </div><!--end startbarElements-->
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="#sidebarTransaksi" data-bs-toggle="collapse"
+                                    role="button" aria-expanded="false" aria-controls="sidebarTransaksi">
+                                    <i class="iconoir-compact-disc menu-icon"></i>
+                                    <span>Transaksi</span>
+                                </a>
+                                <div class="collapse " id="sidebarTransaksi">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item @if (Request::segment(2) == 'tabungan') active @endif ">
+                                            <a class="nav-link"
+                                                href="{{ route('admin.transaksi.tabungan') }}">Tabungan</a>
+                                        </li><!--end nav-item-->
+                                        <li class="nav-item @if (Request::segment(2) == 'peminjaman') active @endif">
+                                            <a class="nav-link"
+                                                href="{{ route('admin.transaksi.peminjaman') }}">Peminjaman</a>
+                                        </li><!--end nav-item-->
+                                    </ul><!--end nav-->
+                                </div><!--end startbarElements-->
+                            </li><!--end nav-item-->
+                        @else
+                            <li class="nav-item @if (Request::segment(1) == 'dashboard') active @endif">
+                                <a class="nav-link " href="{{ route('dashboard') }}">
+                                    <i class="iconoir-report-columns menu-icon"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li><!--end nav-item-->
+                             <li class="nav-item">
+                                <a class="nav-link" href="#sidebarTransaksi" data-bs-toggle="collapse"
+                                    role="button" aria-expanded="false" aria-controls="sidebarTransaksi">
+                                    <i class="iconoir-compact-disc menu-icon"></i>
+                                    <span>Transaksi</span>
+                                </a>
+                                <div class="collapse " id="sidebarTransaksi">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item @if (Request::segment(1) == 'tabungan') active @endif ">
+                                            <a class="nav-link"
+                                                href="{{ route('tabungan') }}">Tabungan</a>
+                                        </li><!--end nav-item-->
+                                        <li class="nav-item @if (Request::segment(1) == 'peminjaman') active @endif">
+                                            <a class="nav-link"
+                                                href="{{ route('peminjaman') }}">Peminjaman</a>
+                                        </li><!--end nav-item-->
+                                    </ul><!--end nav-->
+                                </div><!--end startbarElements-->
+                            </li><!--end nav-item-->
+                        @endif
+
                     </ul><!--end navbar-nav--->
                 </div>
             </div><!--end startbar-collapse-->

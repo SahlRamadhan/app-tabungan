@@ -19,8 +19,8 @@
                 <div class="card-body">
                     <div class="row d-flex">
                         <div class="col-9">
-                            <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Total Revenue</p>
-                            <h4 class="mt-1 mb-0 fw-medium">$8365.00</h4>
+                            <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Total Tabungan</p>
+                            <h4 class="mt-1 mb-0 fw-medium">Rp. {{ number_format($balances, 0, ",", ".") }} </h4>
                         </div>
                         <div class="col-3 align-self-center">
                             <div
@@ -38,8 +38,8 @@
                 <div class="card-body">
                     <div class="row d-flex">
                         <div class="col-9">
-                            <p class="text-muted text-uppercase mb-0 fw-normal fs-13">New Order</p>
-                            <h4 class="mt-1 mb-0 fw-medium">722</h4>
+                            <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Total User</p>
+                            <h4 class="mt-1 mb-0 fw-medium">{{ $user }}</h4>
                         </div>
                         <div class="col-3 align-self-center">
                             <div class="d-flex align-items-center thumb-md border-dashed border-info rounded mx-auto">
