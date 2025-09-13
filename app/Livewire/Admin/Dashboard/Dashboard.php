@@ -12,7 +12,7 @@ class Dashboard extends Component
     #[Layout('components.layouts.adminLayout')]
     public function render()
     {
-        $user  = User::count();
+        $user  = User::where('role', 'user')->count();
         $balances = Balances::sum('amount');
         return view('livewire.admin.dashboard.dashboard', compact('user', 'balances'));
     }

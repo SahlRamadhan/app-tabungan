@@ -16,7 +16,8 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('amount');
             $table->integer('jenispembayaran_id');
-            $table->enum('status', ['pending', 'in', 'out'])->default('pending');
+            $table->string('bukti_pembayaran')->nullable();
+            $table->enum('status', ['padding', 'in', 'out'])->default('padding');
             $table->timestamps();
         });
     }

@@ -111,9 +111,17 @@
                                             <td>{{ $user->no_hp }}</td>
                                             <td>{{ $user->no_ktp }}</td>
                                             <td>{{ $user->alamat }}</td>
-                                            <td>{{ $user->balances->first()?->amount ?? 0 }}</td>
-                                            <td>{{ $user->balances->sum('amount') }}</td>
-                                            <td>{{ $user->status }}</td>
+                                            <td>{{ number_format($user->balances->first()?->amount ?? 0, 0, ',', '.') }}
+                                            </td>
+                                            <td>{{ number_format($user->balances->sum('amount'), 0, ',', '.') }}</td>
+                                            <td>
+                                                @if ($user->status == 'active')
+                                                    <span
+                                                        class="badge rounded text-success bg-success-subtle">{{ $user->status }}</span>
+                                                @else()
+                                                    <span
+                                                        class="badge rounded text-danger bg-secondary-subtle">{{ $user->status }}</span>
+                                                @endif
                                             <td class="text-end">
                                                 <a wire:click="edit({{ $user->id }})"><i
                                                         class="las la-pen text-secondary font-16"></i></a>

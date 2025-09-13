@@ -132,6 +132,21 @@
                                 </div><!--end startbarElements-->
                             </li><!--end nav-item-->
                             <li class="nav-item">
+                                <a class="nav-link" href="#sidebarJenisPembayaran" data-bs-toggle="collapse"
+                                    role="button" aria-expanded="false" aria-controls="sidebarJenisPembayaran">
+                                    <i class="iconoir-compact-disc menu-icon"></i>
+                                    <span>Jenis Pembayaran</span>
+                                </a>
+                                <div class="collapse " id="sidebarJenisPembayaran">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item @if (Request::segment(2) == 'jenis-pembayaran') active @endif ">
+                                            <a class="nav-link"
+                                                href="{{ route('admin.jenis-pembayaran') }}">Jenis Pembayaran</a>
+                                        </li><!--end nav-item-->
+                                    </ul><!--end nav-->
+                                </div><!--end startbarElements-->
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
                                 <a class="nav-link" href="#sidebarTransaksi" data-bs-toggle="collapse"
                                     role="button" aria-expanded="false" aria-controls="sidebarTransaksi">
                                     <i class="iconoir-compact-disc menu-icon"></i>

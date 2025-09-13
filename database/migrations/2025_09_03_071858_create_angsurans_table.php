@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('jumlah_angsuran');
             $table->date('tgl_angsuran');
             $table->string('bukti_pembayaran')->nullable();
-            $table->enum('status', ['pending', 'belum', 'lunas'])->default('pending');
+            $table->enum('status', ['padding', 'belum', 'lunas'])->default('padding');
             $table->timestamps();
         });
     }

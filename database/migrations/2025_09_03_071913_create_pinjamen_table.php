@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('no_rek');
             $table->date('tgl_pinjaman');
             $table->date('tgl_jatuhtempo');
-            $table->enum('status', ['pending', 'approved', 'rejected', 'completed'])->default('pending');
+            $table->enum('status', ['padding', 'approved', 'rejected', 'completed'])->default('padding');
             $table->timestamps();
         });
     }

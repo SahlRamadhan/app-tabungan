@@ -85,7 +85,7 @@
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h4 class="card-title">Payments History</h4>
+                            <h4 class="card-title">All Transactions</h4>
                         </div><!--end col-->
                         <div class="col-auto">
                             <div class="dropdown">
@@ -109,10 +109,9 @@
                         <table class="table mb-0">
                             <thead class="table-light">
                                 <tr>
-                                    <th class="border-top-0">Members</th>
-                                    <th class="border-top-0">Invoice</th>
-                                    <th class="border-top-0">Payment Details</th>
                                     <th class="border-top-0">Date</th>
+                                    <th class="border-top-0">Type</th>
+                                    <th class="border-top-0">Description</th>
                                     <th class="border-top-0">AApprox</th>
                                     <th class="border-top-0">Status</th>
                                     <th class="border-top-0">Action</th>
@@ -120,20 +119,26 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <div class="flex-grow-1 text-truncate align-self-center">
-                                                <h6 class="m-0">William Hirsch</h6>
-                                                <p class="fs-12 text-muted mb-0">USA</p>
-                                            </div><!--end media body-->
-                                        </div>
-                                    </td>
-                                    <td><a href="apps-invoice.html" class="fs-12 text-primary">INV-5784</a> </td>
-                                    <td>Service Fee</td>
                                     <td>20 July 2024 <span>03:25pm</span></td>
+                                    <td>Transfer</td>
+                                    <td>Service Fee</td>
                                     <td>$560</td>
                                     <td><span
-                                            class="badge bg-success-subtle text-success fs-11 fw-medium px-2">Paid</span>
+                                            class="badge bg-success-subtle text-success fs-11 fw-medium px-2">Credit</span>
+                                    </td>
+                                    <td>
+                                        <a href="#"><i class="las la-print text-secondary fs-18"></i></a>
+                                        <a href="#"><i class="las la-download text-secondary fs-18"></i></a>
+                                        <a href="#"><i class="las la-trash-alt text-secondary fs-18"></i></a>
+                                    </td>
+                                </tr><!--end tr-->
+                                <tr>
+                                    <td>15 July 2024 <span>012:35pm</span></td>
+                                    <td>Card Payment</td>
+                                    <td>UI/UX Project</td>
+                                    <td>$700</td>
+                                    <td><span
+                                            class="badge bg-danger-subtle text-danger fs-11 fw-medium px-2">Debit</span>
                                     </td>
                                     <td>
                                         <a href="#"><i class="las la-print text-secondary fs-18"></i></a>
@@ -144,6 +149,26 @@
                             </tbody>
                         </table> <!--end table-->
                     </div><!--end /div-->
+                    <div class="d-lg-flex justify-content-lg-between mt-2">
+                        <div class="mb-2 mb-lg-0">
+                            <button type="submit" class="btn btn-primary px-4">Add Transaction</button>
+                        </div>
+                        <div>
+                            <ul class="pagination">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">2</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul><!--end pagination-->
+                        </div>
+                    </div>
                 </div><!--end card-body-->
             </div><!--end card-->
         </div> <!--end col-->
