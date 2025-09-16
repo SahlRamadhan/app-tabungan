@@ -11,6 +11,7 @@ use App\Livewire\Admin\Users\Tambah;
 use App\Livewire\Users\Auth\Login;
 use App\Livewire\Users\Auth\Register;
 use App\Livewire\Users\Dashboard\Dashboard as DashboardDashboard;
+use App\Livewire\Users\Transaksi\AddTabungan;
 use App\Livewire\Users\Transaksi\PeminjamanUsers;
 use App\Livewire\Users\Transaksi\TabunganUsers;
 use Illuminate\Support\Facades\Auth;
@@ -41,4 +42,5 @@ Route::middleware(['auth', IsUser::class])->group(function () {
     Route::get('/dashboard', DashboardDashboard::class)->name('dashboard');
     Route::get('/tabungan', TabunganUsers::class)->name('tabungan');
     Route::get('/peminjaman', PeminjamanUsers::class)->name('peminjaman');
+    Route::get('/add-tabungan', AddTabungan::class)->name('add-tabungan');
 });

@@ -24,11 +24,11 @@
 
                         </div>
 
-                        <h4 class="my-2 fs-24 fw-semibold">122.5692.00 <small class="font-14">BTC</small></h4>
-                        <button type="submit" class="btn btn-soft-primary">Transfer</button>
+                        <h4 class="my-2 fs-24 fw-semibold">Rp. {{ number_format($totalBalances, 0, ',', '.') }} <small
+                                class="font-14">BTC</small></h4>
+                        <a href="{{ route('add-tabungan') }} " class="btn btn-soft-primary">Deposit</a>
                         <button type="button" class="btn btn-soft-danger">Request</button>
                     </div>
-                    <p class="mb-0  mt-2 text-success fst-italic">The last transaction $2560.00 is Successful!</p>
                 </div><!--end card-body-->
             </div><!--end card-->
         </div><!--end col-->
@@ -37,8 +37,8 @@
                 <div class="card-body">
                     <div class="row d-flex justify-content-center">
                         <div class="col-9">
-                            <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Gross Volume</p>
-                            <h4 class="mt-1 mb-0 fw-medium">$8659.50</h4>
+                            <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Total Uang Masuk</p>
+                            <h4 class="mt-1 mb-0 fw-medium">Rp. {{ number_format($totalBalances, 0, ',', '.') }}</h4>
                         </div>
                         <!--end col-->
                         <div class="col-3 align-self-center">
@@ -60,8 +60,8 @@
                 <div class="card-body">
                     <div class="row d-flex justify-content-center">
                         <div class="col-9">
-                            <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Net Volume</p>
-                            <h4 class="mt-1 mb-0 fw-medium">$5523.50</h4>
+                            <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Total Uang Keluar</p>
+                            <h4 class="mt-1 mb-0 fw-medium">Rp. {{ number_format($totalUangKeluar, 0, ',', '.') }}</h4>
                         </div>
                         <!--end col-->
                         <div class="col-3 align-self-center">
@@ -111,48 +111,43 @@
                                 <tr>
                                     <th class="border-top-0">Date</th>
                                     <th class="border-top-0">Type</th>
-                                    <th class="border-top-0">Description</th>
-                                    <th class="border-top-0">AApprox</th>
+                                    <th class="border-top-0">Nominal</th>
                                     <th class="border-top-0">Status</th>
                                     <th class="border-top-0">Action</th>
                                 </tr><!--end tr-->
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>20 July 2024 <span>03:25pm</span></td>
-                                    <td>Transfer</td>
-                                    <td>Service Fee</td>
-                                    <td>$560</td>
-                                    <td><span
-                                            class="badge bg-success-subtle text-success fs-11 fw-medium px-2">Credit</span>
-                                    </td>
-                                    <td>
-                                        <a href="#"><i class="las la-print text-secondary fs-18"></i></a>
-                                        <a href="#"><i class="las la-download text-secondary fs-18"></i></a>
-                                        <a href="#"><i class="las la-trash-alt text-secondary fs-18"></i></a>
-                                    </td>
-                                </tr><!--end tr-->
-                                <tr>
-                                    <td>15 July 2024 <span>012:35pm</span></td>
-                                    <td>Card Payment</td>
-                                    <td>UI/UX Project</td>
-                                    <td>$700</td>
-                                    <td><span
-                                            class="badge bg-danger-subtle text-danger fs-11 fw-medium px-2">Debit</span>
-                                    </td>
-                                    <td>
-                                        <a href="#"><i class="las la-print text-secondary fs-18"></i></a>
-                                        <a href="#"><i class="las la-download text-secondary fs-18"></i></a>
-                                        <a href="#"><i class="las la-trash-alt text-secondary fs-18"></i></a>
-                                    </td>
-                                </tr><!--end tr-->
+                                @foreach ($balances as $balance)
+                                    <tr>
+                                        <td> <a href="" wire:click="detail({{ $balance->id }})"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#exampleModalFullscreenXxl">{{ $balance->created_at->format('d F Y h:ia') }}</a>
+                                        </td>
+                                        <td>{{ $balance->jenisPembayaran->name }}</td>
+                                        <td>Rp. {{ number_format($balance->amount, 0, ',', '.') }}</td>
+                                        <td>
+                                            @if ($balance->status === 'padding')
+                                                <span
+                                                    class="badge bg-warning-subtle text-warning fs-11 fw-medium px-2">Pending</span>
+                                            @elseif ($balance->status === 'out')
+                                                <span
+                                                    class="badge bg-danger-subtle text-danger fs-11 fw-medium px-2">Failed</span>
+                                            @else
+                                                <span
+                                                    class="badge bg-success-subtle text-success fs-11 fw-medium px-2">Success</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="#"><i class="las la-print text-secondary fs-18"></i></a>
+                                            <a href="#"><i class="las la-download text-secondary fs-18"></i></a>
+                                            <a href="#"><i class="las la-trash-alt text-secondary fs-18"></i></a>
+                                        </td>
+                                    </tr><!--end tr-->
+                                @endforeach
                             </tbody>
                         </table> <!--end table-->
                     </div><!--end /div-->
                     <div class="d-lg-flex justify-content-lg-between mt-2">
-                        <div class="mb-2 mb-lg-0">
-                            <button type="submit" class="btn btn-primary px-4">Add Transaction</button>
-                        </div>
                         <div>
                             <ul class="pagination">
                                 <li class="page-item disabled">
@@ -174,4 +169,45 @@
         </div> <!--end col-->
 
     </div><!--end row-->
+
+    <div wire:ignore.self class="modal fade" id="exampleModalFullscreenXxl" tabindex="-1"
+        aria-labelledby="exampleModalFullscreenXxlLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen-xxl-down">
+            <div class="modal-content">
+                @if ($detailtransaksi)
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="exampleModalFullscreenXxlLabel">Detail Transaksi</h6>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h6>Id Anggota : {{ $detailtransaksi->user->uuid }}</h6>
+                        <h6>Nama Anggota : {{ $detailtransaksi->user->name }}</h6>
+                        <h6>Jenis Pembayaran : {{ $detailtransaksi->jenisPembayaran->name }}</h6>
+                        <h6>Nominal : Rp. {{ number_format($detailtransaksi->amount, 0, ',', '.') }}</h6>
+                        <h6>Status :
+                            @if ($detailtransaksi->status === 'padding')
+                                <span
+                                    class="badge bg-warning-subtle text-warning fs-11 fw-medium px-2">Pending</span>
+                            @elseif ($detailtransaksi->status === 'out')
+                                <span
+                                    class="badge bg-danger-subtle text-danger fs-11 fw-medium px-2">Failed</span>
+                            @else
+                                <span
+                                    class="badge bg-success-subtle text-success fs-11 fw-medium px-2">Success</span>
+                            @endif
+                        </h6>
+                        <h6>Tanggal Transaksi : {{ $detailtransaksi->created_at->format('d F Y h:ia') }}</h6>
+                        <h6>Bukti Pembayaran :</h6>
+                        <img src="{{ asset('/buktipembayaran/images/' . $detailtransaksi->bukti_pembayaran) }}"
+                            alt="Bukti Pembayaran" class="img-fluid" style="max-width: 300px;">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm"
+                            data-bs-dismiss="modal">Close</button>
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
 </div>

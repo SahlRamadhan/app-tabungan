@@ -17,6 +17,7 @@
 
 
     <!-- App css -->
+    <link href="/admin/assets/libs/uppy/uppy.min.css" rel="stylesheet" type="text/css" />
     <link href="/admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/admin/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="/admin/assets/css/app.min.css" rel="stylesheet" type="text/css" />
@@ -249,6 +250,8 @@
 
     <script src="/admin/assets/libs/apexcharts/apexcharts.min.js"></script>
     <script src="https://apexcharts.com/samples//admin/assets/stock-prices.js"></script>
+    <script src="/admin/assets/libs/uppy/uppy.legacy.min.js"></script>
+    <script src="/admin/assets/js/pages/file-upload.init.js"></script>
     <script src="/admin/assets/js/pages/index.init.js"></script>
     <script src="/admin/assets/js/DynamicSelect.js"></script>
     <script src="/admin/assets/js/app.js"></script>
