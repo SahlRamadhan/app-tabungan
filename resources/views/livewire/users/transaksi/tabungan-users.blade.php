@@ -121,7 +121,7 @@
                                     <tr>
                                         <td> <a href="" wire:click="detail({{ $balance->id }})"
                                                 data-bs-toggle="modal"
-                                                data-bs-target="#exampleModalFullscreenXxl">{{ $balance->created_at->format('d F Y h:ia') }}</a>
+                                                data-bs-target="#exampleModalFullscreenXxl">{{ $balance->created_at->setTimezone('Asia/Jakarta')->format('d F Y h:ia') }}</a>
                                         </td>
                                         <td>{{ $balance->jenisPembayaran->name }}</td>
                                         <td>Rp. {{ number_format($balance->amount, 0, ',', '.') }}</td>
@@ -197,7 +197,8 @@
                                     class="badge bg-success-subtle text-success fs-11 fw-medium px-2">Success</span>
                             @endif
                         </h6>
-                        <h6>Tanggal Transaksi : {{ $detailtransaksi->created_at->format('d F Y h:ia') }}</h6>
+                        <h6>Tanggal Transaksi : {{ $detailtransaksi->created_at->setTimezone('Asia/Jakarta')->format('d F Y h:ia') }}</h6>
+                        <h6>Tanggal Approved : {{ $detailtransaksi->approved_at ? $detailtransaksi->approved_at->setTimezone('Asia/Jakarta')->format('d F Y H:i') : '-' }}</h6>
                         <h6>Bukti Pembayaran :</h6>
                         <img src="{{ asset('/buktipembayaran/images/' . $detailtransaksi->bukti_pembayaran) }}"
                             alt="Bukti Pembayaran" class="img-fluid" style="max-width: 300px;">
