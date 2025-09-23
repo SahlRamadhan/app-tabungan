@@ -50,4 +50,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Balances::class, 'user_id', 'id');
     }
+
+    /**
+     * Computed attribute: total uang masuk (deposits with status 'in').
+     * Access via $user->total_uang_masuk
+     */
+    public function getTotalUangMasukAttribute()
+    {
+        return $this->balances()->where('type', 'deposit')->where('status', 'in')->sum('amount');
+    }
 }

@@ -10,6 +10,17 @@ class Balances extends Model
         'approved_at' => 'datetime',
     ];
 
+    protected $fillable = [
+        'user_id',
+        'jenispembayaran_id',
+        'amount',
+        'bukti_pembayaran',
+        'status',
+        'approved_by_id',
+        'approved_at',
+        'type'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

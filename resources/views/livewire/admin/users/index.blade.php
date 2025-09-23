@@ -95,7 +95,7 @@
                                         <th>No Telepon</th>
                                         <th>No NIK</th>
                                         <th>Alamat</th>
-                                        <th>Amount</th>
+                                        <th>Simpanan Pokok</th>
                                         <th>Total</th>
                                         <th>Status</th>
                                         <th class="text-end">Action</th>
@@ -111,9 +111,8 @@
                                             <td>{{ $user->no_hp }}</td>
                                             <td>{{ $user->no_ktp }}</td>
                                             <td>{{ $user->alamat }}</td>
-                                            <td>{{ number_format($user->balances->first()?->amount ?? 0, 0, ',', '.') }}
-                                            </td>
-                                            <td>{{ number_format($user->balances->sum('amount'), 0, ',', '.') }}</td>
+                                            <td>{{ number_format($user->simpan_pokok ?? 0, 0, ',', '.') }}</td>
+                                            <td>{{ number_format($user->totalUangMasuk, 0, ',', '.') }}</td>
                                             <td>
                                                 @if ($user->status == 'active')
                                                     <span

@@ -60,10 +60,10 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="nonik" class="form-label">Uang Pokok</label>
-                            <input type="number" class="form-control" id="nonik" placeholder="Masukkan Uang Pokok"
-                                wire:model="amount">
-                            @error('amount')
+                            <label for="simpan_pokok" class="form-label">Simpanan Pokok</label>
+                            <input type="number" class="form-control" id="simpan_pokok"
+                                placeholder="Masukkan Simpanan Pokok" wire:model="simpan_pokok">
+                            @error('simpan_pokok')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>

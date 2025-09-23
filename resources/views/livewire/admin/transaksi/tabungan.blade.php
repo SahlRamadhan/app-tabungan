@@ -46,6 +46,8 @@
                                 <tr>
                                     <th class="border-top-0">Date</th>
                                     <th class="border-top-0">Type</th>
+                                    <th class="border-top-0">Name</th>
+                                    <th class="border-top-0">Jenis Pembayaran</th>
                                     <th class="border-top-0">Nominal</th>
                                     <th class="border-top-0">Status</th>
                                     <th class="border-top-0">Approved By</th>
@@ -60,7 +62,17 @@
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#exampleModalFullscreenXxl">{{ $balance->created_at->setTimezone('Asia/Jakarta')->format('d F Y h:ia') }}</a>
                                         </td>
-                                        <td>{{ $balance->jenisPembayaran->name }}</td>
+                                        <td>
+                                            @if ($balance->type === 'deposit')
+                                                <span
+                                                    class="badge bg-success-subtle text-success fs-11 fw-medium px-2">Deposit</span>
+                                            @else
+                                                <span
+                                                    class="badge bg-danger-subtle text-danger fs-11 fw-medium px-2">Withdraw</span>
+                                            @endif
+                                        </td>
+                                        <td>{{ $balance->user->name ?? '-' }}</td>
+                                        <td>{{ $balance->jenisPembayaran->name ?? '-' }}</td>
                                         <td>Rp. {{ number_format($balance->amount, 0, ',', '.') }}</td>
                                         <td>
                                             @if ($balance->status === 'padding')
@@ -153,14 +165,23 @@
                                 <span class="badge bg-success-subtle text-success fs-11 fw-medium px-2">Success</span>
                             @endif
                         </h6>
-                        <h6>Tanggal Transaksi : {{ $detailtransaksi->created_at->setTimezone('Asia/Jakarta')->format('d F Y h:ia') }}</h6>
-                        <h6>Tanggal Approved : {{ $detailtransaksi->approved_at ? $detailtransaksi->approved_at->setTimezone('Asia/Jakarta')->format('d F Y H:i') : '' }}</h6>
-                        <h6>Bukti Pembayaran :</h6>
-                        <img src="{{ asset('/buktipembayaran/images/' . $detailtransaksi->bukti_pembayaran) }}"
-                            alt="Bukti Pembayaran" class="img-fluid" style="max-width: 300px;">
+                        <h6>Tanggal Transaksi :
+                            {{ $detailtransaksi->created_at->setTimezone('Asia/Jakarta')->format('d F Y h:ia') }}</h6>
+                        <h6>Tanggal Approved :
+                            {{ $detailtransaksi->approved_at ? $detailtransaksi->approved_at->setTimezone('Asia/Jakarta')->format('d F Y H:i') : '' }}
+                        </h6>
+                        @if (
+                            $detailtransaksi->jenisPembayaran &&
+                                strtolower($detailtransaksi->jenisPembayaran->name) !== 'cash' &&
+                                $detailtransaksi->bukti_pembayaran)
+                            <h6>Bukti Pembayaran :</h6>
+                            <img src="{{ asset('/buktipembayaran/images/' . $detailtransaksi->bukti_pembayaran) }}"
+                                alt="Bukti Pembayaran" class="img-fluid" style="max-width: 300px;">
+                        @endif
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary btn-sm"
+                            data-bs-dismiss="modal">Close</button>
                     </div>
                 @endif
             </div>

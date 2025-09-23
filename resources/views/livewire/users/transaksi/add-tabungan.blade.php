@@ -47,7 +47,7 @@
                     $selectedJenis = $jenisPembayaran->firstWhere('id', $jenispembayaran_id);
                 @endphp
 
-                @if ($selectedJenis && strtolower($selectedJenis->name) === 'transfer')
+                @if ($selectedJenis && strtolower($selectedJenis->name) !== 'cash')
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mb-3">
@@ -69,13 +69,13 @@
                 <div class="row">
                     <div class="col-sm-12 text-start">
                         <button class="btn btn-primary px-4">Pay Now</button>
-                        <button type="submit" class="btn btn-danger px-4">Cancle</button>
+                        <button type="button" class="btn btn-danger px-4" wire:click="cancel">Cancel</button>
                     </div>
                 </div>
             </form>
         </div><!--end card-body-->
     </div><!--end card-->
 
-   
 
-    </div>
+
+</div>

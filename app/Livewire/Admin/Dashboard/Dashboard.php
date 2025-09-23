@@ -13,7 +13,9 @@ class Dashboard extends Component
     public function render()
     {
         $user  = User::where('role', 'user')->count();
-        $balances = Balances::sum('amount');
-        return view('livewire.admin.dashboard.dashboard', compact('user', 'balances'));
+        $totalUangMasuk = Balances::where('status', 'in')->where('type', 'deposit')->sum('amount');
+        $totalUangKeluar = Balances::where('status', 'in')->where('type', 'withdraw')->sum('amount');
+        $netBalance = $totalUangMasuk - $totalUangKeluar;
+        return view('livewire.admin.dashboard.dashboard', compact('user', 'totalUangMasuk', 'totalUangKeluar', 'netBalance'));
     }
 }

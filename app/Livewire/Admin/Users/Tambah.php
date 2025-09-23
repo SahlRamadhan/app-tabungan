@@ -3,13 +3,15 @@
 namespace App\Livewire\Admin\Users;
 
 use App\Models\Balances;
+use App\Models\JenisPembayaran;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 class Tambah extends Component
 {
-    public $name, $email, $password, $password_confirmation, $no_telp, $alamat, $no_ktp, $amount;
+    public $name, $email, $password, $password_confirmation, $no_telp, $alamat, $no_ktp, $amount, $simpan_pokok;
 
     #[Layout('components.layouts.adminLayout')]
     public function render()
@@ -27,6 +29,7 @@ class Tambah extends Component
             'no_telp' => 'required|string|max:15',
             'alamat' => 'nullable|string|max:255',
             'no_ktp' => 'required|string|max:20',
+            'simpan_pokok' => 'nullable|integer|min:0',
 
         ]);
 
@@ -39,14 +42,30 @@ class Tambah extends Component
         $user->alamat = $this->alamat;
         $user->no_ktp = $this->no_ktp;
         $user->uuid = $uuid;
+        $user->simpan_pokok = $this->simpan_pokok ?? 0;
 
         $user->save();
 
-        $balances = new Balances();
-        $balances->user_id = $user->id;
-        $balances->amount = $this->amount ?? 0;
-        $balances->status = 'in';
-        $balances->save();
+        // ensure a JenisPembayaran named 'Cash' exists and attach it
+        $jenis = JenisPembayaran::firstOrCreate([
+            'name' => 'Cash'
+        ], [
+            'name' => 'Cash'
+        ]);
+
+        // If admin provided simpan_pokok, create a separate balance entry for the principal
+        if (!empty($this->simpan_pokok) && $this->simpan_pokok > 0) {
+            $pokok = new Balances();
+            $pokok->user_id = $user->id;
+            $pokok->jenispembayaran_id = $jenis->id;
+            $pokok->amount = $this->simpan_pokok;
+            $pokok->bukti_pembayaran = null;
+            $pokok->status = 'in';
+            $pokok->type = 'deposit';
+            $pokok->approved_by_id = Auth::id();
+            $pokok->approved_at = now();
+            $pokok->save();
+        }
 
         return redirect()->to('/admin/users');
     }
