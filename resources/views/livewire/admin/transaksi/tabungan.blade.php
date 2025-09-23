@@ -21,20 +21,40 @@
                     <div class="row align-items-center">
                         <div class="col">
                             <h4 class="card-title">All Transactions</h4>
-                        </div><!--end col-->
+
+                            <!-- Search Form -->
+                            <div class="topbar-item list-unstyled d-inline-flex align-items-center mb-0">
+                                <div class="hide-phone app-search mt-3">
+                                    <form role="search" action="#" method="get" class="d-flex mt-2">
+                                        <input type="search" wire:model.live= 'search' name="search"
+                                            class="form-control top-search mb-0" placeholder="Search here...">
+                                        <button type="submit" class="btn btn-primary ms-2">
+                                            <i class="iconoir-search"></i>
+                                        </button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+
                         <div class="col-auto">
                             <div class="dropdown">
                                 <a href="#" class="btn bt btn-light dropdown-toggle" data-bs-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
-                                    <i class="icofont-calendar fs-5 me-1"></i> This Month<i
+                                    <i class="icofont-calendar fs-5 me-1"></i> Filter<i
                                         class="las la-angle-down ms-1"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item" href="#">Today</a>
-                                    <a class="dropdown-item" href="#">Last Week</a>
-                                    <a class="dropdown-item" href="#">Last Month</a>
-                                    <a class="dropdown-item" href="#">This Year</a>
+                                    <a class="dropdown-item" href="#"
+                                        wire:click.prevent="setRange('today')">Today</a>
+                                    <a class="dropdown-item" href="#"
+                                        wire:click.prevent="setRange('last_week')">Last Week</a>
+                                    <a class="dropdown-item" href="#"
+                                        wire:click.prevent="setRange('last_month')">Last Month</a>
+                                    <a class="dropdown-item" href="#"
+                                        wire:click.prevent="setRange('this_year')">This Year</a>
                                 </div>
+
                             </div>
                         </div><!--end col-->
                     </div> <!--end row-->
@@ -120,21 +140,10 @@
                         </table> <!--end table-->
                     </div><!--end /div-->
                     <div class="d-lg-flex justify-content-lg-between mt-2">
-                        <div>
-                            <ul class="pagination">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                </li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">2</a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                </li>
-                            </ul><!--end pagination-->
+                        <div class="mb-2 mb-lg-0">
+                            <button type="submit" class="btn btn-primary px-4">Add Transaction</button>
                         </div>
+                        {{ $balances->links('vendor.pagination.custom') }}
                     </div>
                 </div><!--end card-body-->
             </div><!--end card-->

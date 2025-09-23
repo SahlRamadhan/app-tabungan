@@ -20,13 +20,7 @@
                     <div class="row d-flex">
                         <div class="col-9">
                             <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Total Saldo</p>
-                            <h4 class="mt-1 mb-0 fw-medium">Rp. {{ number_format($netBalance, 0, ",", ".") }} </h4>
-                        </div>
-                        <div class="col-3 align-self-center">
-                            <div
-                                class="d-flex align-items-center thumb-md border-dashed border-primary rounded mx-auto">
-                                <i class="iconoir-dollar-circle fs-22 text-primary"></i>
-                            </div>
+                            <h4 class="mt-1 mb-0 fw-medium">Rp. {{ number_format($netBalance, 0, ',', '.') }} </h4>
                         </div>
                     </div>
                 </div>
@@ -41,10 +35,46 @@
                             <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Total User</p>
                             <h4 class="mt-1 mb-0 fw-medium">{{ $user }}</h4>
                         </div>
-                        <div class="col-3 align-self-center">
-                            <div class="d-flex align-items-center thumb-md border-dashed border-info rounded mx-auto">
-                                <i class="iconoir-cart fs-22 text-info"></i>
-                            </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end col -->
+
+        {{-- <div class="col-md-3">
+            <div class="card bg-corner-img">
+                <div class="card-body">
+                    <div class="row d-flex">
+                        <div class="col-9">
+                            <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Total User Bulan Ini</p>
+                            <h4 class="mt-1 mb-0 fw-medium">{{ $userBaruBulanIni }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end col --> --}}
+
+        <div class="col-md-3">
+            <div class="card bg-corner-img">
+                <div class="card-body">
+                    <div class="row d-flex">
+                        <div class="col-9">
+                            <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Uang Masuk Bulan Ini</p>
+                            <h4 class="mt-1 mb-0 fw-medium">Rp. {{ number_format($uangMasukBulanIni, 0, ',', '.') }}
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end col -->
+
+        <div class="col-md-3">
+            <div class="card bg-corner-img">
+                <div class="card-body">
+                    <div class="row d-flex">
+                        <div class="col-9">
+                            <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Uang Keluar Bulan Ini</p>
+                            <h4 class="mt-1 mb-0 fw-medium">Rp. {{ number_format($uangKeluarBulanIni, 0, ',', '.') }}
+                            </h4>
                         </div>
                     </div>
                 </div>
@@ -57,13 +87,7 @@
                     <div class="row d-flex">
                         <div class="col-9">
                             <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Total Uang Masuk</p>
-                            <h4 class="mt-1 mb-0 fw-medium">Rp. {{ number_format($totalUangMasuk, 0, ",", ".") }}</h4>
-                        </div>
-                        <div class="col-3 align-self-center">
-                            <div
-                                class="d-flex align-items-center thumb-md border-dashed border-warning rounded mx-auto">
-                                <i class="iconoir-percentage-circle fs-22 text-warning"></i>
-                            </div>
+                            <h4 class="mt-1 mb-0 fw-medium">Rp. {{ number_format($totalUangMasuk, 0, ',', '.') }}</h4>
                         </div>
                     </div>
                 </div>
@@ -76,12 +100,7 @@
                     <div class="row d-flex">
                         <div class="col-9">
                             <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Total Uang Keluar</p>
-                            <h4 class="mt-1 mb-0 fw-medium">Rp. {{ number_format($totalUangKeluar, 0, ",", ".") }}</h4>
-                        </div>
-                        <div class="col-3 align-self-center">
-                            <div class="d-flex align-items-center thumb-md border-dashed border-danger rounded mx-auto">
-                                <i class="iconoir-hexagon-dice fs-22 text-danger"></i>
-                            </div>
+                            <h4 class="mt-1 mb-0 fw-medium">Rp. {{ number_format($totalUangKeluar, 0, ',', '.') }}</h4>
                         </div>
                     </div>
                 </div>

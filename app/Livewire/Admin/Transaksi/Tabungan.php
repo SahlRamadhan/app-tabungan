@@ -6,14 +6,47 @@ use App\Models\Balances;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Livewire\WithPagination;
 
 class Tabungan extends Component
 {
+    use WithPagination;
+
+    public $search = '';
+
+    public $range;
+    public $bulan;
+    public $tahun;
+    public $type;
+    public $jenisPembayaran;
+    public $status;
     public $detailtransaksi;
     #[Layout('components.layouts.adminLayout')]
+
+    public function updating($field)
+    {
+        // setiap kali filter berubah, reset ke halaman pertama
+        $this->resetPage();
+    }
+
+    public function setRange($value)
+    {
+        $this->range = $value;
+        $this->resetPage();
+    }
     public function render()
     {
-        $balances = Balances::with(['user', 'jenisPembayaran'])->get();
+        $filters = [
+            'range' => $this->range,
+            'bulan' => $this->bulan,
+            'tahun' => $this->tahun,
+            'type' => $this->type,
+            'jenisPembayaran' => $this->jenisPembayaran,
+            'status' => $this->status,
+        ];
+
+
+        $balances = Balances::filter($filters)->search($this->search)->latest()->paginate(10);
         return view('livewire.admin.transaksi.tabungan', compact('balances'));
     }
 
