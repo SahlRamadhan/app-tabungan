@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Transaksi;
 
 use App\Models\Balances;
+use App\Models\User;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,12 @@ class Tabungan extends Component
 
     public $search = '';
 
+    public $query = ''; // inputan admin
+    public $users = []; // hasil pencarian
+    public $selectedUser = null;
+
+    public $amount;
+
     public $range;
     public $bulan;
     public $tahun;
@@ -22,18 +29,6 @@ class Tabungan extends Component
     public $status;
     public $detailtransaksi;
     #[Layout('components.layouts.adminLayout')]
-
-    public function updating($field)
-    {
-        // setiap kali filter berubah, reset ke halaman pertama
-        $this->resetPage();
-    }
-
-    public function setRange($value)
-    {
-        $this->range = $value;
-        $this->resetPage();
-    }
     public function render()
     {
         $filters = [
@@ -48,6 +43,59 @@ class Tabungan extends Component
 
         $balances = Balances::filter($filters)->search($this->search)->latest()->paginate(10);
         return view('livewire.admin.transaksi.tabungan', compact('balances'));
+    }
+
+    public function addTransaksi()
+    {
+        if (!$this->selectedUser) {
+            session()->flash('error', 'Please select a user first.');
+            return;
+        }
+
+        if (!$this->amount || $this->amount < 1000) {
+            session()->flash('error', 'Amount must be at least 1000.');
+            return;
+        }
+
+        $balance = new Balances();
+        $balance->user_id = $this->selectedUser->id;
+        $balance->amount = $this->amount;
+        $balance->type = $this->type;
+        $balance->jenispembayaran_id = 1;
+        $balance->status = 'in';
+        $balance->approved_by_id = Auth::id();
+        $balance->approved_at = now();
+        $balance->save();
+
+        $this->reset(['query', 'users', 'selectedUser', 'amount', 'type']);
+        session()->flash('message', 'Transaction added successfully.');
+    }
+    public function updatedQuery()
+    {
+        $this->users = User::where('name', 'like', '%' . $this->query . '%')
+            ->limit(5)
+            ->get();
+    }
+
+    public function selectUser($id)
+    {
+        $user = User::find($id);
+        if ($user) {
+            $this->selectedUser = $user;
+            $this->query = $user->name; // isi input dengan nama
+            $this->users = []; // hapus suggestion setelah dipilih
+        }
+    }
+    public function updating($field)
+    {
+        // setiap kali filter berubah, reset ke halaman pertama
+        $this->resetPage();
+    }
+
+    public function setRange($value)
+    {
+        $this->range = $value;
+        $this->resetPage();
     }
 
     public function terima($id)

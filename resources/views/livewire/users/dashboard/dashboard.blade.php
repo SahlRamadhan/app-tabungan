@@ -20,7 +20,7 @@
                     <div class="row d-flex">
                         <div class="col-9">
                             <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Total Saldo</p>
-                            <h4 class="mt-1 mb-0 fw-medium">Rp. {{ number_format($balances, 0, ",", ".") }}</h4>
+                            <h4 class="mt-1 mb-0 fw-medium">Rp. {{ number_format($totalSaldo, 0, ",", ".") }}</h4>
                         </div>
                         <div class="col-3 align-self-center">
                             <div
@@ -38,8 +38,8 @@
                 <div class="card-body">
                     <div class="row d-flex">
                         <div class="col-9">
-                            <p class="text-muted text-uppercase mb-0 fw-normal fs-13">New Order</p>
-                            <h4 class="mt-1 mb-0 fw-medium">722</h4>
+                            <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Total Uang Masuk</p>
+                            <h4 class="mt-1 mb-0 fw-medium">Rp. {{ number_format($totalIn, 0, ",", ".") }}</h4>
                         </div>
                         <div class="col-3 align-self-center">
                             <div class="d-flex align-items-center thumb-md border-dashed border-info rounded mx-auto">
@@ -56,8 +56,8 @@
                 <div class="card-body">
                     <div class="row d-flex">
                         <div class="col-9">
-                            <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Sessions</p>
-                            <h4 class="mt-1 mb-0 fw-medium">181</h4>
+                            <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Total Uang Keluar</p>
+                            <h4 class="mt-1 mb-0 fw-medium">Rp. {{ number_format($totalOut, 0, ",", ".") }}</h4>
                         </div>
                         <div class="col-3 align-self-center">
                             <div
@@ -75,8 +75,8 @@
                 <div class="card-body">
                     <div class="row d-flex">
                         <div class="col-9">
-                            <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Avg. Order value</p>
-                            <h4 class="mt-1 mb-0 fw-medium">$1025.50</h4>
+                            <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Total Transaksi</p>
+                            <h4 class="mt-1 mb-0 fw-medium">{{ number_format($totalTransaksi, 0, ",", ".") }}</h4>
                         </div>
                         <div class="col-3 align-self-center">
                             <div class="d-flex align-items-center thumb-md border-dashed border-danger rounded mx-auto">

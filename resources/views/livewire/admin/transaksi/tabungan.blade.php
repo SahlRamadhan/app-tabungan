@@ -80,7 +80,7 @@
                                     <tr>
                                         <td> <a href="" wire:click="detail({{ $balance->id }})"
                                                 data-bs-toggle="modal"
-                                                data-bs-target="#exampleModalFullscreenXxl">{{ $balance->created_at->setTimezone('Asia/Jakarta')->format('d F Y h:ia') }}</a>
+                                                data-bs-target="#exampleModalFullscreenXxl">{{ $balance->created_at->setTimezone('Asia/Jakarta')->format('d F Y') }}</a>
                                         </td>
                                         <td>
                                             @if ($balance->type === 'deposit')
@@ -141,9 +141,12 @@
                     </div><!--end /div-->
                     <div class="d-lg-flex justify-content-lg-between mt-2">
                         <div class="mb-2 mb-lg-0">
-                            <button type="submit" class="btn btn-primary px-4">Add Transaction</button>
+                            <a href="" wire:click="addTransaksi()" data-bs-target="#modalAddTransaksi"
+                                data-bs-toggle="modal" class="btn btn-primary px-4">Add Transaction</a>
                         </div>
-                        {{ $balances->links('vendor.pagination.custom') }}
+                        <div>
+                            {{ $balances->links('vendor.pagination.custom') }}
+                        </div>
                     </div>
                 </div><!--end card-body-->
             </div><!--end card-->
@@ -151,6 +154,61 @@
 
     </div><!--end row-->
 
+    <div wire:ignore.self class="modal fade" id="modalAddTransaksi" tabindex="-1"
+        aria-labelledby="exampleModalFullscreenXxlLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen-xxl-down">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="exampleModalFullscreenXxlLabel">Add Transaction</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form action="" wire:submit.prevent="addTransaksi">
+                        <div class="mb-3">
+                            <label for="user" class="form-label">Name</label>
+                            <input type="text" id="user" class="form-control"
+                                placeholder="Search user by name or email" wire:model.live="query"
+                                autocomplete="off">
+                            {{-- Dropdown suggestion --}}
+                            @if (!empty($users))
+                                <ul class="list-group position-absolute w-100" style="z-index: 1000;">
+                                    @foreach ($users as $user)
+                                        <li class="list-group-item list-group-item-action"
+                                            wire:click="selectUser('{{ $user->id }}')">
+                                            {{ $user->name }}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                            <div class="mt-3">
+                                @if ($selectedUser)
+                                    <label for="user" class="form-label">UUID</label>
+                                    <input type="text" id="user" class="form-control" readonly
+                                        value="{{ $selectedUser ? $selectedUser['uuid'] : 'No user selected' }}">
+                                @endif
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="type" class="form-label">Type</label>
+                            <select id="type" class="form-select" wire:model="type">
+                                <option value="">Select Type</option>
+                                <option value="deposit">Deposit</option>
+                                <option value="withdraw">Withdraw</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="amount" class="form-label">Amount</label>
+                            <input type="number" id="amount" class="form-control" wire:model="amount">
+                        </div>
+                        <button class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Modal Detail -->
     <div wire:ignore.self class="modal fade" id="exampleModalFullscreenXxl" tabindex="-1"
         aria-labelledby="exampleModalFullscreenXxlLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen-xxl-down">
@@ -158,7 +216,8 @@
                 @if ($detailtransaksi)
                     <div class="modal-header">
                         <h6 class="modal-title" id="exampleModalFullscreenXxlLabel">Detail Transaksi</h6>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <h6>Id Anggota : {{ $detailtransaksi->user->uuid }}</h6>
