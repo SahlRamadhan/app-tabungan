@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('alamat')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('no_ktp')->nullable();
-            $table->string('no_rek')->nullable();
+            $table->integer('simpan_pokok')->default(0);
             $table->enum('role', ['admin', 'user'])->default('user');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamp('email_verified_at')->nullable();

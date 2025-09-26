@@ -15,11 +15,15 @@ return new class extends Migration
             $table->id();
             $table->integer('pinjaman_id');
             $table->integer('user_id');
+            $table->integer('jenispembayaran_id');
+            $table->integer('nomor_angsuran');
             $table->integer('nominal');
             $table->integer('jumlah_angsuran');
-            $table->date('tgl_angsuran');
+            $table->date('tgl_bayar')->nullable();
             $table->string('bukti_pembayaran')->nullable();
             $table->enum('status', ['padding', 'belum', 'lunas'])->default('padding');
+            $table->integer('approved_by_id')->nullable();
+            $table->timestamp('approved_at')->nullable();
             $table->timestamps();
         });
     }

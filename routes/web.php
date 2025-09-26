@@ -6,6 +6,7 @@ use App\Livewire\Admin\Dashboard\Dashboard;
 use App\Livewire\Admin\JenisPembayaran\JenisPembayaran;
 use App\Livewire\Admin\Transaksi\Peminjaman;
 use App\Livewire\Admin\Transaksi\Tabungan;
+use App\Livewire\Admin\Transaksi\TambahPeminjaman;
 use App\Livewire\Admin\Users\Index;
 use App\Livewire\Admin\Users\Tambah;
 use App\Livewire\Users\Auth\Login;
@@ -37,6 +38,7 @@ Route::middleware(['auth', IsAdmin::class])->group(function () {
     Route::get('/admin/tabungan', Tabungan::class)->name('admin.transaksi.tabungan');
     Route::get('/admin/peminjaman', Peminjaman::class)->name('admin.transaksi.peminjaman');
     Route::get('/admin/jenis-pembayaran', JenisPembayaran::class)->name('admin.jenis-pembayaran');
+    Route::get('/admin/peminjaman/tambah', TambahPeminjaman::class)->name('admin.transaksi.peminjaman.tambah');
 });
 Route::middleware(['auth', IsUser::class])->group(function () {
     Route::get('/dashboard', DashboardDashboard::class)->name('dashboard');

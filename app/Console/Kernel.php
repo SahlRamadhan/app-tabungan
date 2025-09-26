@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(\Illuminate\Console\Scheduling\Schedule $schedule)
     {
         // Jalankan tiap awal bulan jam 1 pagi
-        $schedule->command('app:auto-tabungan-command')->everyMinute();
+        $schedule->command('app:auto-tabungan-command')->monthlyOn(1, '01:00');
     }
 
     protected function commands()

@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('amount');
+            $table->enum('type', ['deposit', 'withdraw'])->default('deposit');
             $table->integer('jenispembayaran_id');
             $table->string('bukti_pembayaran')->nullable();
             $table->enum('status', ['padding', 'in', 'out', 'rejected'])->default('padding');
+            $table->integer('approved_by_id')->nullable();
+            $table->timestamp('approved_at')->nullable();
             $table->timestamps();
         });
     }

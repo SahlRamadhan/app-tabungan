@@ -57,6 +57,22 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-9">
+                            <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Total Saldo Bulan Lalu</p>
+                            <h4 class="mt-1 mb-0 fw-medium">Rp.
+                                {{ number_format($user->totalSaldobulanlalu ?? 0, 0, ',', '.') }}</h4>
+                        </div>
+                        <!--end col-->
+                    </div>
+                    <!--end row-->
+                </div>
+                <!--end card-body-->
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card bg-corner-img">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-9">
                             <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Uang Masuk Bulan Ini</p>
                             <h4 class="mt-1 mb-0 fw-medium">Rp.
                                 {{ number_format($totalInThisMonth ?? 0, 0, ',', '.') }}</h4>
@@ -78,22 +94,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-lg-3">
-            <!--end card-->
-            <div class="card bg-corner-img">
-                <div class="card-body">
-                    <div class="row d-flex justify-content-">
-                        <div class="col-9">
-                            <p class="text-muted text-uppercase mb-0 fw-normal fs-13">Total Uang Keluar</p>
-                            <h4 class="mt-1 mb-0 fw-medium">Rp. {{ number_format($totalOut ?? 0, 0, ',', '.') }}</h4>
-                        </div>
-                        <!--end col-->
-                    </div>
-                    <!--end row-->
-                </div>
-                <!--end card-body-->
-            </div>
-        </div><!--end col-->
     </div><!--end row-->
 
     <div class="row justify-content-center">
@@ -232,7 +232,7 @@
                                 $detailtransaksi->bukti_pembayaran)
                             <h6>Bukti Pembayaran :</h6>
                             <img src="{{ asset('/buktipembayaran/images/' . $detailtransaksi->bukti_pembayaran) }}"
-                                alt="Bukti Pembayaran" class="img-fluid" style="max-width: 300px;">
+                                alt="Bukti Pembayaran" style="max-width: 300px;">
                         @endif
                     </div>
                     <div class="modal-footer">

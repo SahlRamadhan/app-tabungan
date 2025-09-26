@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\JenisPembayaran;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -22,5 +23,15 @@ class DatabaseSeeder extends Seeder
         $admin->role = "admin";
         $admin->status = "active";
         $admin->save();
+
+        $jenisPembayaran = new JenisPembayaran();
+        $jenisPembayaran->name = 'Cash';
+        $jenisPembayaran->keterangan = 'Pembayaran secara tunai';
+        $jenisPembayaran->save();
+
+        $jenisPembayaran = new JenisPembayaran();
+        $jenisPembayaran->name = 'Transfer';
+        $jenisPembayaran->keterangan = 'Pembayaran secara transfer';
+        $jenisPembayaran->save();
     }
 }
