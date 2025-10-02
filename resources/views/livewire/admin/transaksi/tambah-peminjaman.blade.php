@@ -57,14 +57,14 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="simpan_pokok" class="form-label">Tanggal Pinjaman</label>
                             <input type="date" class="form-control" id="simpan_pokok"
                                 placeholder="Masukkan Tanggal Pinjaman" wire:model="tgl_pinjaman">
                             @error('tgl_pinjaman')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
-                        </div>
+                        </div> --}}
                         <button class="btn btn-primary">Tambah</button>
                     </form>
                 </div><!--end card-body-->

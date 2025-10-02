@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('nomor_pinjaman')->unique();
             $table->integer('nominal');
             $table->integer('nominal_angsuran');
-            $table->integer('sisa_pinjaman');
             $table->integer('tenor');
             $table->date('tgl_pinjaman')->nullable();
             $table->date('tgl_jatuhtempo')->nullable();

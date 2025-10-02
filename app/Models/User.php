@@ -56,6 +56,11 @@ class User extends Authenticatable
         return $this->hasMany(Pinjaman::class, 'user_id', 'id');
     }
 
+    public function angsurans()
+    {
+        return $this->hasMany(Angsuran::class, 'user_id', 'id');
+    }
+
     /**
      * Computed attribute: total uang masuk (deposits with status 'in').
      * Access via $user->total_uang_masuk

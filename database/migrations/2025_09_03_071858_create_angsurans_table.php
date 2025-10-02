@@ -16,9 +16,10 @@ return new class extends Migration
             $table->integer('pinjaman_id');
             $table->integer('user_id');
             $table->integer('jenispembayaran_id');
-            $table->integer('nomor_angsuran');
-            $table->integer('nominal');
-            $table->integer('jumlah_angsuran');
+            $table->string('nomor_angsuran');
+            $table->integer('nominal')->default(0);
+            $table->integer('sisa_pinjaman');
+            $table->date('tgl_jatuhtempo')->nullable();
             $table->date('tgl_bayar')->nullable();
             $table->string('bukti_pembayaran')->nullable();
             $table->enum('status', ['padding', 'belum', 'lunas'])->default('padding');

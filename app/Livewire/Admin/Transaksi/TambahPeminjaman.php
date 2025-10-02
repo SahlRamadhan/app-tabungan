@@ -89,12 +89,23 @@ class TambahPeminjaman extends Component
         $pinjam->nominal = $this->nominal;
         $pinjam->tenor = $this->tenor;
         $pinjam->nominal_angsuran = $this->nominal_angsuran;
-        $pinjam->sisa_pinjaman = $this->nominal;
-        $pinjam->tgl_pinjaman = Carbon::parse($this->tgl_pinjaman)->format('Y-m-d');
+        $pinjam->tgl_pinjaman = now();
         $pinjam->tgl_jatuhtempo = Carbon::parse($this->tgl_pinjaman)->addMonths((int)$this->tenor)->format('Y-m-d');
         $pinjam->status = 'approved';
         $pinjam->approved_by_id = Auth::id();
         $pinjam->save();
+
+        $no_angsuran = 'ANG' . date('Ymd') . '0001';
+        $angsuran = new Angsuran();
+        $angsuran->pinjaman_id = $pinjam->id;
+        $angsuran->user_id = $pinjam->user_id;
+        $angsuran->jenispembayaran_id = null;
+        $angsuran->nomor_angsuran = $no_angsuran;
+        $angsuran->nominal = $pinjam->nominal_angsuran;
+        $angsuran->sisa_pinjaman = $pinjam->nominal;
+        $angsuran->tgl_jatuhtempo = Carbon::parse($pinjam->tgl_pinjaman)->addMonth();
+        $angsuran->status = 'belum';
+        $angsuran->save();
 
         redirect()->to('/admin/peminjaman');
     }

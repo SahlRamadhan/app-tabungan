@@ -141,8 +141,8 @@
                                 <div class="collapse " id="sidebarJenisPembayaran">
                                     <ul class="nav flex-column">
                                         <li class="nav-item @if (Request::segment(2) == 'jenis-pembayaran') active @endif ">
-                                            <a class="nav-link"
-                                                href="{{ route('admin.jenis-pembayaran') }}">Jenis Pembayaran</a>
+                                            <a class="nav-link" href="{{ route('admin.jenis-pembayaran') }}">Jenis
+                                                Pembayaran</a>
                                         </li><!--end nav-item-->
                                     </ul><!--end nav-->
                                 </div><!--end startbarElements-->
@@ -173,7 +173,7 @@
                                     <span>Dashboard</span>
                                 </a>
                             </li><!--end nav-item-->
-                             <li class="nav-item">
+                            <li class="nav-item">
                                 <a class="nav-link" href="#sidebarTransaksi" data-bs-toggle="collapse"
                                     role="button" aria-expanded="false" aria-controls="sidebarTransaksi">
                                     <i class="iconoir-compact-disc menu-icon"></i>
@@ -182,12 +182,13 @@
                                 <div class="collapse " id="sidebarTransaksi">
                                     <ul class="nav flex-column">
                                         <li class="nav-item @if (Request::segment(1) == 'tabungan') active @endif ">
-                                            <a class="nav-link"
-                                                href="{{ route('tabungan') }}">Tabungan</a>
+                                            <a class="nav-link" href="{{ route('tabungan') }}">Tabungan</a>
                                         </li><!--end nav-item-->
                                         <li class="nav-item @if (Request::segment(1) == 'peminjaman') active @endif">
-                                            <a class="nav-link"
-                                                href="{{ route('peminjaman') }}">Peminjaman</a>
+                                            <a class="nav-link" href="{{ route('peminjaman') }}">Peminjaman</a>
+                                        </li><!--end nav-item-->
+                                        <li class="nav-item @if (Request::segment(1) == 'angsuran') active @endif">
+                                            <a class="nav-link" href="{{ route('angsuran') }}">Angsuran</a>
                                         </li><!--end nav-item-->
                                     </ul><!--end nav-->
                                 </div><!--end startbarElements-->

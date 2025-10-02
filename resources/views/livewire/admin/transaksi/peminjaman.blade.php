@@ -68,13 +68,14 @@
                                     <th class="border-top-0">Date</th>
                                     <th class="border-top-0">Uiid</th>
                                     <th class="border-top-0">Name</th>
-                                    <th class="border-top-0">Jenis Pembayaran</th>
+                                    <th class="border-top-0">Pembayaran</th>
                                     <th class="border-top-0">Nominal</th>
                                     <th class="border-top-0">Tenor</th>
-                                    <th class="border-top-0">Nominal Angsuran</th>
+                                    <th class="border-top-0">Angsuran</th>
+                                    <th class="border-top-0">Tanggal Peminjaman</th>
+                                    <th class="border-top-0">Tanggal Jatuh Tempo</th>
                                     <th class="border-top-0">Status</th>
                                     <th class="border-top-0">Approved By</th>
-                                    <th class="border-top-0">Tanggal Peminjaman</th>
                                     <th class="border-top-0">Action</th>
                                 </tr><!--end tr-->
                             </thead>
@@ -92,6 +93,8 @@
                                         <td>Rp. {{ number_format($pinjam->nominal, 0, ',', '.') }}</td>
                                         <td>{{ $pinjam->tenor }} Bulan</td>
                                         <td>Rp. {{ number_format($pinjam->nominal_angsuran, 0, ',', '.') }}</td>
+                                        <td>{{ $pinjam->tgl_pinjaman }}</td>
+                                        <td>{{ $pinjam->tgl_jatuhtempo }}</td>
                                         <td>
                                             @if ($pinjam->status === 'padding')
                                                 <span
@@ -114,9 +117,7 @@
                                                 -
                                             @endif
                                         </td>
-                                        <td>
-                                            {{ $pinjam->created_at->setTimezone('Asia/Jakarta')->format('d F Y')}}
-                                        </td>
+
                                         <td>
                                             @if ($pinjam->status === 'padding')
                                                 @auth
@@ -142,7 +143,8 @@
                     </div><!--end /div-->
                     <div class="d-lg-flex justify-content-lg-between mt-2">
                         <div class="mb-2 mb-lg-0">
-                            <a href="{{ route('admin.transaksi.peminjaman.tambah') }}"  class="btn btn-primary px-4">Add Transaction</a>
+                            <a href="{{ route('admin.transaksi.peminjaman.tambah') }}" class="btn btn-primary px-4">Add
+                                Transaction</a>
                         </div>
                         <div>
                             {{-- {{ $pinjam->links('vendor.pagination.custom') }} --}}
@@ -237,10 +239,7 @@
                         <h6>Tanggal Approved :
                             {{ $detailtransaksi->approved_at ? $detailtransaksi->approved_at->setTimezone('Asia/Jakarta')->format('d F Y H:i') : '' }}
                         </h6>
-                        @if (
-                            $detailtransaksi->jenisPembayaran &&
-                                strtolower($detailtransaksi->jenisPembayaran->name) !== 'cash' &&
-                                $detailtransaksi->bukti_pembayaran)
+                        @if ($detailtransaksi->jenisPembayaran && strtolower($detailtransaksi->jenisPembayaran->name) !== 'cash' && $detailtransaksi->bukti_pembayaran)
                             <h6>Bukti Pembayaran :</h6>
                             <img src="{{ asset('/buktipembayaran/images/' . $detailtransaksi->bukti_pembayaran) }}"
                                 alt="Bukti Pembayaran" class="img-fluid" style="max-width: 300px;">
